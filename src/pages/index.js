@@ -1,46 +1,113 @@
 import React from "react"
-import Link from "gatsby-link"
 
-export default ({ data }) => {
-  return (
-    <div>
-      <h2>
-        Amazing Pandas Eating Things
-      </h2>
-      <h4>
-        {data.allMarkdownRemark.totalCount} Posts
-      </h4>
-      {data.allMarkdownRemark.edges.map(({ node }) =>
-        <div key={node.id}>
-          <Link
-            to={node.frontmatter.slug}
+import Container from "../components/container"
+import BlogPostPreviewItem from "../components/blog-post-preview-item"
+
+import presets, { colors } from "../utils/presets"
+import { rhythm, scale, options } from "../utils/typography"
+import logo from "../logo.svg"
+
+class BlogPostsIndex extends React.Component {
+  render() {
+    const { allMarkdownRemark } = this.props.data
+
+    return (
+      <div
+        css={{
+          [presets.Tablet]: {
+            background: colors.ui.whisper,
+            paddingBottom: rhythm(options.blockMarginBottom * 4),
+          },
+        }}
+      >
+        <Container
+          css={{
+            [presets.Tablet]: {
+              background: `url(${logo})`,
+              paddingBottom: `${rhythm(
+                options.blockMarginBottom * 4
+              )} !important`,
+              backgroundSize: `30px 30px`,
+              backgroundRepeat: `no-repeat`,
+              backgroundPosition: `bottom center`,
+            },
+          }}
+        >
+          <h1
+            css={{
+              marginTop: 0,
+              [presets.Tablet]: {
+                marginTop: 0,
+                position: `absolute`,
+                width: 1,
+                height: 1,
+                padding: 0,
+                overflow: `hidden`,
+                clip: `rect(0,0,0,0)`,
+                whiteSpace: `nowrap`,
+                clipPath: `inset(50%)`,
+              },
+            }}
           >
-            <h3>
-              {node.frontmatter.title}{" "}
-              <span>— {node.frontmatter.date}</span>
-            </h3>
-            <p>
-              {node.frontmatter.excerpt}
-            </p>
-          </Link>
-        </div>
-      )}
-    </div>
-  )
+            Blog
+          </h1>
+          {allMarkdownRemark.edges.map(({ node }) => (
+            <BlogPostPreviewItem
+              post={node}
+              key={node.frontmatter.slug}
+              css={{
+                marginBottom: rhythm(options.blockMarginBottom),
+                [presets.Tablet]: {
+                  background: `#fff`,
+                  borderRadius: presets.radiusLg,
+                  boxShadow: `0 3px 10px rgba(25, 17, 34, 0.05)`,
+                  padding: rhythm(options.blockMarginBottom * 2),
+                  paddingLeft: rhythm(options.blockMarginBottom * 3),
+                  paddingRight: rhythm(options.blockMarginBottom * 3),
+                  marginLeft: rhythm(-options.blockMarginBottom * 2),
+                  marginRight: rhythm(-options.blockMarginBottom * 2),
+                  transition: `transform ${presets.animation.speedDefault} ${
+                    presets.animation.curveDefault
+                  },  box-shadow ${presets.animation.speedDefault} ${
+                    presets.animation.curveDefault
+                  }, padding ${presets.animation.speedDefault} ${
+                    presets.animation.curveDefault
+                  }`,
+                  "&:hover": {
+                    transform: `translateY(-4px)`,
+                    boxShadow: `0 10px 42px rgba(25, 17, 34, 0.1)`,
+                  },
+                  "&:active": {
+                    boxShadow: `0 3px 10px rgba(25, 17, 34, 0.05)`,
+                    transform: `translateY(0)`,
+                    transition: `transform 50ms`,
+                  },
+                },
+                [presets.Desktop]: {},
+                [presets.Hd]: {},
+              }}
+            />
+          ))}
+        </Container>
+      </div>
+    )
+  }
 }
 
-export const query = graphql`
-  query IndexQuery {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      totalCount
+export default BlogPostsIndex
+
+export const pageQuery = graphql`
+  query BlogPostsIndexQuery {
+    allMarkdownRemark(
+      sort: { order: DESC, fields: [frontmatter___date] }
+    ) {
       edges {
         node {
-          id
+          excerpt
           frontmatter {
-            title
-            slug
-            date(formatString: "DD MMMM, YYYY")
             excerpt
+            title
+            date(formatString: "MMMM Do YYYY")
           }
         }
       }

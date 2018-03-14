@@ -13,6 +13,12 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+      },
+    },
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
@@ -42,30 +48,32 @@ module.exports = {
         showSpinner: false,
       },
     },
+    `gatsby-plugin-glamor`,
     `gatsby-plugin-catch-links`,
-    // {
-    //   resolve: `gatsby-plugin-manifest`,
-    //   options: {
-    //     name: `SigodenBlog`,
-    //     short_name: `SigodenBlog`,
-    //     start_url: `/`,
-    //     background_color: `#ffffff`,
-    //     theme_color: `#663399`,
-    //     display: `minimal-ui`,
-    //     icons: [
-    //       {
-    //         src: `/android-chrome-192x192.png`,
-    //         sizes: `192x192`,
-    //         type: `image/png`,
-    //       },
-    //       {
-    //         src: `/android-chrome-512x512.png`,
-    //         sizes: `512x512`,
-    //         type: `image/png`,
-    //       },
-    //     ],
-    //   },
-    // },
+    `gatsby-plugin-react-next`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `SigodenBlog`,
+        short_name: `SigodenBlog`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#663399`,
+        display: `minimal-ui`,
+        icons: [
+          {
+            src: `/android-chrome-192x192.png`,
+            sizes: `192x192`,
+            type: `image/png`,
+          },
+          {
+            src: `/android-chrome-512x512.png`,
+            sizes: `512x512`,
+            type: `image/png`,
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-plugin-offline`,
       options: {
@@ -73,6 +81,7 @@ module.exports = {
         navigateFallbackWhitelist: [],
       },
     },
+    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-feed`,
