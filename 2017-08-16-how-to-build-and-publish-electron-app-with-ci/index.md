@@ -1,5 +1,5 @@
 ---
-title: "使用 CI 构建和发布全平台 electron 应用"
+title: "使用 CI 构建和发布 electron 应用"
 slug: "build-and-publish-electron-app-with-ci"
 date: "2017-08-16"
 tags: ["howto", "ci", "electron"]
