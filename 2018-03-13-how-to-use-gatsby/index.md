@@ -1,8 +1,8 @@
 ---
-title: "Gatsby 入门"
+title: "使用 Gatsby 创建静态站点"
 slug: "how-to-use-gatsby"
 date: "2018-03-12"
-tags: ["howto", "tool", "react", "graphql"]
+tags: ["howto", "react", "graphql"]
 excerpt: "Gatsby 是一款超赞的基于 React 和 GraphQL 静态文档生成器，本文将以从零搭建一个博客系统的形式演示如何使用 Gatsby 生成静态站点。"
 
 ---

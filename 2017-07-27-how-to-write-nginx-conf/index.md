@@ -2,7 +2,7 @@
 title: "nginx 配置从入门到精通"
 slug: "nginx-how-to-write-conf"
 date: 2017-07-27
-tags: ["howto", nginx"]
+tags: ["howto", "nginx"]
 excerpt: "nginx 可以作为静态文件服务器，可以伺服单页面应用，可以反向代理 API, 可以配置 https 等，任何一项功能都需要相应配置。如何配置合乎自己需要的 nginx 呢？"
 
 ---

@@ -2,8 +2,8 @@
 title: "npm 安装的包为什么不一致"
 date: "2017-03-25"
 slug: "npman-zhuang-de-bao-wei-shi-yao-bu-yi-zhi"
-tags: ["why", npm", "nodejs"]
-excerpt: "npm 包在安装是可能会产生不一致的目录，这是如何产生的？本文将对不一致原因进行分析"
+tags: ["why", "npm", "nodejs"]
+excerpt: "npm 包在安装是可能会产生不一致的目录，这是如何产生的？本文将对不一致原因进行分析。"
 
 ---
 

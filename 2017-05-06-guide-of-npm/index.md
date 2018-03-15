@@ -1,8 +1,8 @@
 ---
-title: "npm 参考手册"
+title: "一份详见的 npm 参考手册"
 slug: "npm-can-kao-shou-ce"
 date: 2017-05-06
-tags: ["nodejs", "npm", "javascript"]
+tags: ["guide", "nodejs", "npm"]
 excerpt: "一份详见的 npm 使用手册"
 notoc: true
 

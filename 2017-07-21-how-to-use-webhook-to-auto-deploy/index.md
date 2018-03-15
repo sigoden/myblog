@@ -2,7 +2,7 @@
 title: "使用 webhook 自动部署"
 date: "2017-07-21"
 slug: "webhook-deploy"
-tags: ["howto", "webhook", "npm", "nodejs"]
+tags: ["howto", "ci", "nodejs"]
 excerpt: "如何有一种机制，直接克隆提交到仓储的代码，进行测试并部署，生活将方便很多。这种机制是存在的，名为 webhook。"
 
 ---

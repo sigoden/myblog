@@ -2,7 +2,7 @@
 title: "socket.io 系列一：介绍"
 date: "2017-04-18"
 slug: "socket-iozhi-yi-jie-shao"
-tags: ["nodejs", "socket.io", "javascript"]
+tags: ["howto", "socket.io", "javascript"]
 excerpt: "socket.io 提供了基于事件的实时双向通讯，本文将对其进行详细介绍"
 
 ---

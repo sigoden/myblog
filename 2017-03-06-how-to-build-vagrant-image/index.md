@@ -3,9 +3,11 @@ title: "从零开始创建 Vagrant 镜像"
 slug: "cong-ling-kai-shi-da-jian-vagrantrong-qi-2"
 date: "2017-03-16"
 tags: ["howto", "vagrant"]
-excerpt: "Vagrant 是一个用于创建和部署虚拟化开发环境的工具。vagrant 镜像是一个 vagrant 用来启动虚拟机的文件，通常是纯净的操作系统镜像，如 Ubuntu, Debian，CentOS 打包生成。但我们也可以选择一款操作系统，在其上安装配置我们需要的工具和软件，然后打包成一个自定义 vagrant 镜像。通过 vagrant 镜像我们可以随时随地复用我们的安装配置，可也以分享给他人使用。尽管 Vagrant 官方有免费的镜像仓储，但是网络连接很是问题，这时候自己动手创建镜像不失为一种很好的手段。本文介绍如何创建一款自己的 vagrant 镜像。"
+excerpt: "通过 vagrant 镜像我们可以再发行版的基础上自定义 Linux 镜像并发布。本文将介绍如何从无到有打造一款 vagrant 镜像。"
 
 ---
+
+Vagrant 是一个用于创建和部署虚拟化开发环境的工具。vagrant 镜像是一个 vagrant 用来启动虚拟机的文件，通常是纯净的操作系统镜像，如 Ubuntu, Debian，CentOS 打包生成。但我们也可以选择一款操作系统，在其上安装配置我们需要的工具和软件，然后打包成一个自定义 vagrant 镜像。
 
 我们将通过 virtualbox, 安装运行 ubuntu-server-16.04.2 操作系统，再在其上安装 docker-17.03.0, 然后将这一切打包成为一个名为 ubuntu-16.04-docker-17.03.0 的 vagrant 镜像
 

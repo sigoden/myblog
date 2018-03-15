@@ -3,7 +3,7 @@ title: "探究 logstash grok 文本解析"
 slug: "logstash-grok-wen-ben-jie-xi"
 date: "2017-04-07"
 tags: ["howto", "elk", "grok", "logstash"]
-excerpt: "ELK 栈在日志处理领域被广泛使用。作为 ELK 中的 L, Logstash 主要负责接收，处理，转发日志。grok 是 filters 模块中一个文本解析插件，利用 Oniguruma 正则解析文本，输出结构化信息。只有理解了 grok, 我们才能从容应对各种各样的日志内容，本文结合实例详细分析了如何使用 grok"
+excerpt: "Logstash 常用于 ELK 栈(在日志处理领域被广泛使用), 主要负责数据的收集，处理，转发。而 grok 是 filters 模块中一个文本正则解析插件。只有理解了 grok, 我们才能从容应对各种各样的日志内容，本文结合实例详细分析了如何使用 grok。"
 
 ---
 

@@ -2,7 +2,7 @@
 title: "socket.io 系列三：深入学习"
 date: "2017-04-18"
 slug: "socket-iozhi-san-shen-ru-xue-xi"
-tags: ["nodejs", "socket.io", "javascript"]
+tags: ["howto", "socket.io", "javascript"]
 excerpt: "socket.io 提供了基于事件的实时双向通讯，本文将对其进行详细介绍(三)"
 
 ---

@@ -14,6 +14,7 @@ excerpt: "本文将介绍如何创建极简 node 镜像"
 下面一起来揭露技巧。
 
 ## FROM: 设置 alpine 基础镜像
+
 目前 docker 下最轻量的操作系统是 alpine, 一个 alpine 的体积不到 5M。node 默认镜像依赖的基础镜像是 debian, `debian:jessie`体积已打 123M, 所以想减小尺寸，首要就是从基础镜像切换到 alpine。
 
 ```
@@ -21,6 +22,7 @@ FROM alpine:3.7
 ```
 
 ## RUN: 设置 node 用户
+
 ```
 adduser -D -u 1000 node
 ```
@@ -45,6 +47,7 @@ apk add --no-cache \
 - `apk add --virtual .build-deps`将本次安装的所有包封装成一个名为.build-deps 的虚拟包。这样做的好处是可以通过`apk del .build-deps`一键清除这些包
 
 ## RUN: 导入 node 源码包公钥
+
 ```
 for key in \
     9554F04D7259F04124DE6B476D5A82AC7E37093B \
@@ -62,6 +65,7 @@ done
 这些公钥将用来校验我们通过 curl 下载的 nodejs 源码文件
 
 ## RUN: 下载并 node 校验源码文件
+
 ```
 curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz" \
 && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
@@ -71,6 +75,7 @@ curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz" \
 - `$NODE_VERSION`: 指 node 版本，如 6.10.1
 
 ## RUN: 编译安装 node
+
 ```
 tar -xf "node-v$NODE_VERSION.tar.xz" \
 && cd "node-v$NODE_VERSION" \
@@ -82,6 +87,7 @@ tar -xf "node-v$NODE_VERSION.tar.xz" \
 - `$NODE_VERSION`: 指 node 版本，如 6.10.1
 
 ## RUN: 清理
+
 ```
 apk del .build-deps \
 && cd .. \
@@ -91,6 +97,7 @@ apk del .build-deps \
 - `$NODE_VERSION`: 指 node 版本，如 6.10.1
 
 ## CMD: 设置镜像入口为 node
+
 ```
 CMD [ "node" ]
 ```
@@ -98,6 +105,7 @@ CMD [ "node" ]
 上面为创建 nodejs 镜像必须步骤，下面的步骤根据需要添加
 
 ## 安装 yarn
+
 - 安装依赖
   ```
   apk add --no-cache --virtual .build-deps-yarn curl gnupg
@@ -129,11 +137,13 @@ CMD [ "node" ]
  apk del .build-deps-yarn
  ```
 ## c++ 插件
+
 如果要支持 c++ 插件，还需安装 python,make,g++
 ```
 apk add --no-cache python make g++
 ```
 ## headers 文件
+
 有些 c++ 模块使用过程中还需要下载 node-headers 文件，node-headers 文件国内下载不稳定，建议也集成到镜像里，否则你可能碰到一个包编译很久没动静的情况。
 
 - 参考 nodejs 源码下载校验步骤对 headers 文件进行下载校验

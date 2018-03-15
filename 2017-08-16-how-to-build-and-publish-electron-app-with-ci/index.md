@@ -3,9 +3,13 @@ title: "使用 CI 构建和发布全平台 electron 应用"
 slug: "build-and-publish-electron-app-with-ci"
 date: "2017-08-16"
 tags: ["howto", "ci", "electron"]
-excerpt: "Electron 是一款可以通过**Web 前端技术**构建跨平台桌面应用的框架。它将 Chromium 和 Node.js 的事件循环整合在一起，并提供了一些与原生系统交互的 API。简单地说，通过 Electron，我们可以使用自己所熟悉的前端技术轻松构建出一款能运行在 Windows, Linux 和 Mac 上的桌面级应用程序。已经有很多文章介绍了如何开发全平台应用，但是如何高效便捷的构建软件安装包并面向公众发布却较少被提及。本文将介绍一种简单高效的方法构建并发布安装包。"
+excerpt: "通过 Electron，我们可以使用自己所熟悉的前端技术轻松构建出一款能运行在 Windows, Linux 和 Mac 上的桌面级应用程序。本文将介绍一种简单高效的方法构建并发布安装包。"
 
 ---
+
+Electron 是一款可以通过 Web 技术构建跨平台桌面应用的框架。它将 Chromium 和 Node.js 的事件循环整合在一起，并提供了一些与原生系统交互的 API。
+
+通过 Electron，我们可以使用自己所熟悉的前端技术轻松构建出一款能运行在 Windows, Linux 和 Mac 上的桌面级应用程序。已经有很多文章介绍了如何开发全平台应用，但是如何高效便捷的构建软件安装包并面向公众发布却较少被提及。本文将介绍一种简单高效的方法构建并发布安装包。
 
 [AlphaT](https://github.com/sigoden/alphat) 是我最近使用 electron 开发的一款应用。这款应用的构建和发布中的一些经验和总结，催生了这篇博文。
 
