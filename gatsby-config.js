@@ -5,6 +5,8 @@ module.exports = {
     siteUrl: 'https://blog.sigoden.com',
     githubUrl: 'https://github.com/sigoden',
     siteAuthor: 'sigoden',
+    pageSize: 10,
+    pageScrollLoadThreshold: 300,
   },
   plugins: [
     {

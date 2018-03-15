@@ -37,6 +37,7 @@ class BlogPostTemplate extends React.Component {
           ...scale(-2 / 5),
           fontFamily: typography.options.headerFontFamily.join(`,`),
           lineHeight: 1.3,
+          paddingBottom: rhythm(1),
           margin: 0,
           color: colors.gray.calm,
           [presets.Mobile]: {
@@ -125,7 +126,6 @@ class BlogPostTemplate extends React.Component {
               >
                 {prev && (
                   <Link to={prev.frontmatter.slug} css={prevNextLinkStyles}>
-                    <h4 css={prevNextLabelStyles}>Previous</h4>
                     <span
                       css={{
                         [presets.Tablet]: {
@@ -148,7 +148,6 @@ class BlogPostTemplate extends React.Component {
               >
                 {next && (
                   <Link to={next.frontmatter.slug} css={prevNextLinkStyles}>
-                    <h4 css={prevNextLabelStyles}>Next</h4>
                     <span
                       css={{
                         [presets.Tablet]: {
