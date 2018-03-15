@@ -11,14 +11,14 @@ notoc: true
 ## 索引
 
 - [权限](#perm)
-  - [t/team 组织成员管理](#team)
+  - [t/team 组织成员管理](#tteam)
   - [access 包访问控制](#access)
-  - [adduser/login 用户登录](#adduser)
+  - [adduser/login 用户登录](#adduserlogin)
   - [logout 注销](#logout)
   - [owner 所有者管理](#owner)
   - [whoami 查看用户信息](#whoami)
 - [仓储](#pkg-remote)
-  - [s/se/search 仓储查找包](#search)
+  - [s/se/search 仓储查找包](#ssesearch)
   - [publish 发布](#publish)
   - [unpublish 取消发布](#unpublish)
   - [deprecate 弃用 ](#deprecate)
@@ -27,38 +27,38 @@ notoc: true
   - [unstar 取消喜欢](#star)
 - [本地](#pkg-local)
   - [init 初始化 package.json](#init)
-  - [i/install 安装](#install)
-  - [un/uninstall 删除](#uninstall)
-  - [dedupe/ddp 清除重复包](#dedupe)
+  - [i/install 安装](#iinstall)
+  - [un/uninstall 删除](#ununinstall)
+  - [dedupe/ddp 清除重复包](#dedupeddp)
   - [dist-tags 标签管理](#dist-tags)
   - [version 更新包的版本信息](#version)
-  - [it/install-test 运行 npm install && npm test](#install-test)
-  - [ln/link 安装链接](#link)
-  - [ls/list 列出包](#list)
-  - [update/up 更新并安装遗漏的包](#update)
+  - [it/install-test 运行 npm install && npm test](#itinstall-test)
+  - [ln/link 安装链接](#lnlink)
+  - [ls/list 列出包](#lslist)
+  - [update/up 更新并安装遗漏的包](#updateup)
   - [outdated 检测过期](#outdated)
   - [pack 打包 tarball 文件](#pack)
   - [prune 清理外来包](#prune)
   - [shrinkwrap 锁定依赖包版本](#shrinkwrap)
   - [cache 缓存管理](#cache)
 - [脚本](#script)
-  - [run/run-script 运行脚本](#run)
+  - [run/run-script 运行脚本](#runrun-script)
   - [start 运行 start 脚本](#start)
   - [stop 运行 stop 脚本](#stop)
-  - [tst/test 运行 test 脚本](#test)
-  - [rb/rebuild 重新编译本地包](#rebuild)
+  - [tst/test 运行 test 脚本](#tsttest)
+  - [rb/rebuild 重新编译本地包](#rbrebuild)
   - [restart  顺序执行重启相关的一系列脚本](#restart)
 - [配置](#conf)
-  - [c/config 配置管理](#config)
+  - [c/config 配置管理](#cconfig)
   - [get 列出配置](#get)
   - [set 设置配置](#set)
 - [查看](#inspect)
   - [root  包根目录](#root)
   - [prefix 打印 prefix 配置](#prefix)
-  - [v/view 查看仓储信息](#view)
+  - [v/view 查看仓储信息](#vview)
   - [bin 查看 bin 目录](#bin)
-  - [bugs/issue 浏览器查看 bugs](#bugs)
-  - [docs/home 浏览器查看帮助文档](#docs)
+  - [bugs/issue 浏览器查看 bugs](#bugsissue)
+  - [docs/home 浏览器查看帮助文档](#docshome)
   - [repo 浏览器查看仓储](#repo)
   - [help 查看帮助](#help)
   - [help-search 帮助中搜索关键字](#help-search)
@@ -69,7 +69,7 @@ notoc: true
   - [explore 进入包目录并运行命令](#explore)
   - [ping 检查仓储是否可用](#ping)
 
-## 权限 {#perm}
+## 权限
 
 npm 允许通过 scope 组织私有包，通过 team 细化权限控制。
 
@@ -85,7 +85,7 @@ scope 包特征：
 - 细化的权限控制，比如可以创建团队，并赋予团队对包只读 / 修改的权限
 
 
-### owner {#owner}
+### owner
 
 ```
 npm owner add <user> [<@scope>/]<pkg> # 将用户添加到包的所有者列表
@@ -94,7 +94,7 @@ npm owner ls [<@scope>/]<pkg> # 列出包的所有者
 ```
 成为包的所有者的用户，将能够修改元数据（如标记弃用），发布新版本，添加其他用户到包的所有者列表
 
-### t/team {#team}
+### t/team
 
 ```
 npm team create <scope:team> # 创建团队
@@ -108,7 +108,7 @@ npm team ls <scope>|<scope:team> 列出团队 / 成员
 npm team edit <scope:team>  用编辑器编辑团队信息
 ```
 
-### access {#access}
+### access
 
 ```
 npm access public [<package>]  # 设置包开放
@@ -122,30 +122,30 @@ npm access ls-collaborators [<package> [<user>]] # 列出包的权限信息
 npm access edit [<package>] # 用编辑器编辑包权限
 ```
 
-### adduser/login {#adduser}
+### adduser/login
 
 ```
 npm adduser [--registry=url] [--scope=@orgname] [--always-auth]
 ```
 提示输入 username, password, email，进行登录校验，返回 token 保存到.npmrc
 
-### logout {#logout}
+### logout
 
 ```
 npm logout [--registry=<url>] [--scope=<@scope>]
 ```
 请求仓储服务将当前 token 失效
 
-### whoami {#whoami}
+### whoami
 
 ```
 npm whoami [--registry <registry>]
 ```
 列出用户在 npmjs.org 上的用户名
 
-## 仓储 {#pkg-remote}
+## 仓储
 
-### s/se/search {#search}
+### s/se/search
 
 ```
 npm search [-l|--long] [--json] [--parseable] [--no-description] [search terms ...]
@@ -154,7 +154,7 @@ npm search [-l|--long] [--json] [--parseable] [--no-description] [search terms .
 - -l|--long: 展示出全部的 DESCRIPTION 栏信息
 - --no-description: 不显示 DESCRIPTION 栏信息
 
-### publish {#publish}
+### publish
 
 ```
 npm publish [<tarball>|<folder>] [--tag <tag>] [--access <public|restricted>]
@@ -163,7 +163,7 @@ npm publish [<tarball>|<folder>] [--tag <tag>] [--access <public|restricted>]
 - --tag: 带上 tag 信息发布，之后包可以通过`npm install <name>@<tag>`安装
 - --access: 仅适用于 scope 包，默认为 restricted
 
-### unpublish {#unpublish}
+### unpublish
 
 ```
 npm unpublish [<@scope>/]<pkg>[@<version>]
@@ -171,7 +171,7 @@ npm unpublish [<@scope>/]<pkg>[@<version>]
 
 从仓储中删除包，该操作会破坏依赖，不推荐适用，如果是为了鼓励用户适用新版本，可以使用 deprecate 命令
 
-### deprecate {#deprecate}
+### deprecate
 
 ```
 npm deprecate <pkg>[@<version>] <message>
@@ -179,7 +179,7 @@ npm deprecate <pkg>[@<version>] <message>
 
 标记包弃用，用户在安装时 npm 会有警告
 
-### stars {#stars}
+### stars
 
 ```
 npm stars [<user>]
@@ -187,7 +187,7 @@ npm stars [<user>]
 
 查看用户喜欢的包
 
-### star/unstart {#star}
+### star/unstart
 
 ```
 npm star [<pkg>...]
@@ -196,9 +196,9 @@ npm unstar [<pkg>...]
 
 标记喜欢 / 取消喜欢标记
 
-## 本地 {#pkg-local}
+## 本地
 
-### init {#init}
+### init
 
 ```
 npm init [-f|--force|-y|--yes]
@@ -207,7 +207,7 @@ npm init [-f|--force|-y|--yes]
 初始化 package.json,  默认会有很多输入提示，可以通过`-f|--force|-y|--yes`选项创建默认配置的 package.json
 已经存在 package.json 后再次运行`npm init`不会破坏已有配置，只会变更你真正改动的部分
 
-### i/install  {#install}
+### i/install 
 ```
 npm install (with no args, in package dir) # 读取 package.json 安装
 npm install [<@scope>/]<name> # 默认安装标签为 latest
@@ -230,7 +230,7 @@ npm install <folder> 通过包所在的文件夹安装
 - --link: 链接全局安装的包的本地
 - --no-shrinkwrap: 安装时忽略 shrinkwrap
 
-### un/uninstall {#uninstall}
+### un/uninstall
 
 ```
 npm uninstall [<@scope>/]<pkg>[@<version>]... [-S|--save|-D|--save-dev]
@@ -238,14 +238,14 @@ npm uninstall [<@scope>/]<pkg>[@<version>]... [-S|--save|-D|--save-dev]
 - -S/--save: 删除包并移除包在 package.json 的 dependencies 区的信息
 - -D/--save-dev: 删除包并移除包在 package.json 的 devDependencies 区的信息
 
-### ddp/dedupe {#dedupe}
+### ddp/dedupe
 
 ```
 npm dedupe
 ```
 npm 检查包依赖树并清除不要的包
 
-### dist-tags {#dist-tags}
+### dist-tags
 
 ```
 npm dist-tag add <pkg>@<version> [<tag>] # 添加标签
@@ -266,7 +266,7 @@ npm install --tag next
 
 - --registry: 发布包到指定仓储
 
-### v/version {#version}
+### v/version
 
 ```
 npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease | from-git]
@@ -288,14 +288,14 @@ npm version [<newversion> | major | minor | patch | premajor | preminor | prepat
 6. 运行 postversion 脚本
 
 
-### it/install-test {#install-test}
+### it/install-test
 ```
 npm it
 npm install-test
 ```
 相当于运行 npm install && npm test
 
-### ln/link {#link}
+### ln/link
 
 ```
 npm link  # 在全局 node_modules 下创建当前文件夹的超链接
@@ -303,7 +303,7 @@ npm link [<@scope>/]<pkg>[@<version>] # 将全局安装的包链接到本地 nod
 ```
 
 
-### ls/list {#list}
+### ls/list
 ```
 npm ls [[<@scope>/]<pkg> ...]
 ```
@@ -317,7 +317,7 @@ npm ls [[<@scope>/]<pkg> ...]
 - --prod/production: 仅显示 package.json 里 dependencies 包的依赖
 - --dev: 仅显示 package.json 里 devDependencies 包的依赖
 
-### up/update {#update}
+### up/update
 ```
 npm update [-g] [<pkg>...]
 ```
@@ -328,7 +328,7 @@ npm update [-g] [<pkg>...]
 - --dev: 同时更新 devDependencies 中的包
 - --depth: 默认情况下仅更新顶层 (--depth=0) 为 0 的包，如果想更新所有包，可以指定 --depth=9999
 
-### outdated {#outdated}
+### outdated
 
 ```
 npm outdated [[<@scope>/]<pkg> ...]
@@ -355,14 +355,14 @@ body-parser     1.15.2  1.17.1  1.17.1  example
 - --global: 显示全局安装的包的依赖树
 - --depth: 树层级，默认 0
 
-### pack {#pack}
+### pack
 
 ```
 npm pack [[<@scope>/]<pkg>...]
 ```
 从包生成名为`<name>-<version>.tgz`的 tarball, 并缓存
 
-### prune {#prune}
+### prune
 
 ```
 npm prune [[<@scope>/]<pkg>...] [--production]
@@ -371,7 +371,7 @@ npm prune [[<@scope>/]<pkg>...] [--production]
 
 - --production: 移除 devDependencies 中的包
 
-### shrinkwrap {#shrinkwrap}
+### shrinkwrap
 
 ```
 npm shrinkwrap
@@ -431,7 +431,7 @@ npm shrinkwrap
 
 运行`npm install`时如果存在 npm-shrinkwrap.json, npm 在安装包时会根据 shrinkwrap.json 锁定依赖包的版本
 
-### cache {#cache}
+### cache
 
 ```
 npm cache add <tarball file> # 添加到缓存
@@ -446,12 +446,12 @@ npm cache clean [<path>] # 清除缓存
 
 缓存路径可以通过`npm config get cache`获取
 
-## 脚本 {#script}
+## 脚本
 
 package.json 的 scripts 区可以用来定义自定义脚本
 
 
-### run/run-script  {#run}
+### run/run-script 
 
 ```
 npm run <command> [-- <args>...]
@@ -462,7 +462,7 @@ npm run <command> [-- <args>...]
 npm run 会自动将`node_modules/.bin`添加到环境变量 PATH 中。如果本地安装过 mocha, 可以这样编写`"scripts": {"test": "mocha test/\*.js"}`而不需要`"scripts": {"test": "node_modules/.bin/tap test/\*.js"}`
 
 
-### start {#start}
+### start
 
 ```
 npm start [-- <args>]
@@ -470,7 +470,7 @@ npm start [-- <args>]
 
 等同与`npm run start [-- <args>]`
 
-### stop {#stop}
+### stop
 
 ```
 npm stop [-- <args>]
@@ -478,7 +478,7 @@ npm stop [-- <args>]
 
 等同与`npm run stop [-- <args>]`
 
-### tst/test {#test}
+### tst/test
 
 ```
 npm test [-- <args>]
@@ -486,7 +486,7 @@ npm test [-- <args>]
 
 等同与`npm run test [-- <args>]`
 
-### rb/rebuild {#rebuild}
+### rb/rebuild
 
 ```
 npm rebuild [[<@scope>/<name>]...]
@@ -494,7 +494,7 @@ npm rebuild [[<@scope>/<name>]...]
 
 运行指定包中的 build 脚本，适用于更新 node 版本后，重新编译 C++ 包
 
-### restart {#restart}
+### restart
 
 ```
 npm restart [-- <args>]
@@ -502,9 +502,9 @@ npm restart [-- <args>]
 循序执行`1. prerestart 2. prestop 3. stop 4. poststop 5. restart 6. prestart 7. start 8. poststart 9. postrestart`
 
 
-## 配置 {#conf}
+## 配置
 
-### c/config {#config}
+### c/config
 
 ```
 npm config set <key> <value> [-g|--global] # 添加或更新
@@ -515,35 +515,35 @@ npm config edit # 编辑器编辑
 ```
 - --global: 全局配置
 
-### get {#get}
+### get
 
 ```
 npm get <key> # 同 npm config get
 ```
 
-### set {#set}
+### set
 
 ```
 npm set <key> <value> [-g|--global] #同 npm config set
 ```
 
-## 查看 {#inspect}
+## 查看
 
-### root {#root}
+### root
 
 ```
 npm root # 打印本地 node_modules 目录
 npm root -g # 打印全局 node_modules 目录
 ```
 
-### prefix {#prefix}
+### prefix
 
 ```
 npm prefix # 打印包含 package.json 最近父目录
 npm prefix -g # 打印全局配置 prefix 的值
 ```
 
-### view  {#view}
+### view 
 
 ```
 npm view [<@scope>/]<name>[@<version>] [<field>[.<subfield>]...]
@@ -617,14 +617,14 @@ npm view compact@0.1.2 dependencies
   mkdirp: '~0.3' }
 ```
 
-### bin {#bin}
+### bin
 
 ```
 npm bin # 打印包含 npm bin 目录，通常为 node_modules/.bin/
 npm prefix -g # 打印全局 npm bin 目录
 ```
 
-### bugs/issue {#bugs}
+### bugs/issue
 
 ```
 npm bugs [<packagename>]
@@ -635,7 +635,7 @@ npm bugs [<packagename>]
 npm bugs npm # 浏览器打开 https://github.com/npm/npm/issues
 ```
 
-### docs/home {#docs}
+### docs/home
 
 ```
 npm docs [<pkgname> [<pkgname> ...]]
@@ -650,7 +650,7 @@ npm home .
 npm docs npm #浏览器打开 https://docs.npmjs.com/
 ```
 
-### repo {#repo}
+### repo
 
 ```
 npm repo [<pkg>]
@@ -661,7 +661,7 @@ npm repo [<pkg>]
 npm repo npm #浏览器打开 https://github.com/npm/npm
 ```
 
-### help {#help}
+### help
 
 ```
 npm help <term> [<terms..>]
@@ -669,7 +669,7 @@ npm help <term> [<terms..>]
 
 打印特定术语或命令的帮助
 
-### help-search {#help-search}
+### help-search
 
 ```
 npm help-search <text>
@@ -677,16 +677,16 @@ npm help-search <text>
 
 从 npm 官方 markdown 文档中搜索词条
 
-## 其他 {#misc}
+## 其他
 
-### completion {#completion}
+### completion
 
 ```
 npm completion >> ~/.bashrc
 ```
 npm 命令补全
 
-### doctor {#doctor}
+### doctor
 
 ```
 npm doctor
@@ -698,7 +698,7 @@ npm doctor
 - 本地和全局 node\_modules 可写
 - 缓存存在且 tarball 文件健全
 
-### edit {#edit}
+### edit
 
 ```
 npm edit <pkg>[@<version>]
@@ -706,7 +706,7 @@ npm edit <pkg>[@<version>]
 
 进入包目录并启动编辑器
 
-### explore {#explore}
+### explore
 
 ```
 npm explore <pkg> [-- <cmd>]
@@ -720,7 +720,7 @@ npm explore connect -- ls
 HISTORY.md  index.js  LICENSE  node_modules  package.json  README.md
 ```
 
-### ping {#ping}
+### ping
 
 ```
 npm ping [--registry <registry>]
