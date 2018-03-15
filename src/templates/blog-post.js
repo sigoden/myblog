@@ -13,6 +13,7 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark
     const prev = this.props.pathContext.prev
     const next = this.props.pathContext.next
+    const siteMetadata = this.props.data.site.siteMetadata
     const prevNextLinkStyles = {
       "&&": {
         boxShadow: `none`,
@@ -55,7 +56,7 @@ class BlogPostTemplate extends React.Component {
             <title>{post.frontmatter.title}</title>
             <link
               rel="author"
-              href={`https://blog.sigoden.com/about/`}
+              href={`${siteMetadata.siteUrl}/about/`}
             />
             <meta
               name="description"
@@ -66,10 +67,10 @@ class BlogPostTemplate extends React.Component {
               }
             />
 
-            <meta name="og:description" content={post.excerpt} />
+            <meta name="og:description" content={post.frontmatter.excerpt} />
             <meta name="og:type" content="article" />
-            <meta name="article:author" content={`sigoden`} />
-            <meta name="author" content={`sigoden`} />
+            <meta name="article:author" content={siteMetadata.siteAuthor} />
+            <meta name="author" content={siteMetadata.siteAuthor} />
             <meta
               name="article:published_time"
               content={post.frontmatter.rawDate}
@@ -173,6 +174,13 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query TemplateBlogPost($slug: String!) {
+    site {
+      siteMetadata {
+        title
+        siteUrl
+        siteAuthor
+      }
+    }
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
       html
       excerpt

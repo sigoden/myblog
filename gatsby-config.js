@@ -1,8 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: `Sigoden | Blog`,
-    description: `Blogger and Programer`,
-    siteUrl: `https://blog.sigoden.com`,
+    title: 'Sigoden | Blog',
+    description: 'Blogger and Programer',
+    siteUrl: 'https://blog.sigoden.com',
+    githubUrl: 'https://github.com/sigoden',
+    siteAuthor: 'sigoden',
   },
   plugins: [
     {
@@ -139,4 +141,4 @@ module.exports = {
       },
     },
   ],
-};
+}

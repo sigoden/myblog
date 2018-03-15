@@ -1,5 +1,6 @@
 import React from "react"
-import Link from "gatsby-link"
+import Link,  { navigateTo } from "gatsby-link"
+import { kebabCase } from "lodash"
 
 import typography, { rhythm, scale } from "../utils/typography"
 import presets, { colors } from "../utils/presets"
@@ -9,50 +10,51 @@ class BlogPostPreviewItem extends React.Component {
     const post = this.props.post
 
     return (
-      <article className={this.props.className} css={{ position: `relative` }}>
-        <Link to={post.frontmatter.slug}>
+      <article
+        className={this.props.className}
+        css={{ position: `relative`, cursor: `pointer` }} 
+        onClick={e => {
+          if (e.target.tagName === 'A') {
+            return
+          }
+          navigateTo(`/${_.kebabCase(post.frontmatter.slug)}`)
+        }}
+      >
+        <div>
           <h2>{post.frontmatter.title}</h2>
+          <div
+            css={{
+              display: `flex`,
+              alignItems: `center`,
+              marginBottom: rhythm(1),
+            }}
+          >
+            <div>
+              {post.frontmatter.tags.map(tag => (
+                <Link key={tag} to={`/tags/${_.kebabCase(tag)}`} css={{
+                  marginRight: rhythm(0.25),
+                }}>
+                  {tag}
+                </Link>
+              ))}
+            </div>
+          </div>
           <p css={{ fontWeight: `normal` }}>
             {post.frontmatter.excerpt ? post.frontmatter.excerpt : post.excerpt}
           </p>
-        </Link>
-        <div
-          css={{
-            display: `flex`,
-            alignItems: `center`,
-            marginBottom: rhythm(2),
-          }}
-        >
-          <div>
-            {` `}
-            on
-            {` `}
-            {post.frontmatter.date}
+          <div
+            css={{
+              display: `flex`,
+              alignItems: `flex-end`,
+              flexDirection: `column`,
+              marginBottom: rhythm(1),
+            }}
+          >
+            <div css={{marginRight: rhythm(1)}}>
+              {post.frontmatter.date}
+            </div>
           </div>
         </div>
-        <Link
-          to={post.frontmatter.slug}
-          css={{
-            position: `absolute`,
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            overflow: `hidden`,
-            textIndent: `-100%`,
-            whiteSpace: `nowrap`,
-            zIndex: 0,
-            "&&": {
-              border: 0,
-              boxShadow: `none`,
-              "&:hover": {
-                background: `none`,
-              },
-            },
-          }}
-        >
-          Read more
-        </Link>
       </article>
     )
   }

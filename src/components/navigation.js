@@ -4,7 +4,6 @@ import GithubIcon from "react-icons/lib/go/mark-github"
 import logo from "../logo.svg"
 import typography, { rhythm, scale } from "../utils/typography"
 import presets, { colors } from "../utils/presets"
-import { vP, vPHd, vPVHd, vPVVHd } from "./gutters"
 
 const navItemStyles = {
   ...scale(-1 / 3),
@@ -36,48 +35,21 @@ const NavItem = ({ linkTo, children }) => (
   </li>
 )
 
-export default ({ pathname }) => {
+export default ({ pathname, githubUrl }) => {
   const isHomepage = pathname == `/`
   let styles = {}
-  if (isHomepage) {
-    styles.backgroundColor = `rgba(255,255,255,0)`
-    styles.borderBottomColor = `transparent`
-    styles[presets.Tablet] = {
-      position: `absolute`,
-    }
-  } else {
-    styles.backgroundColor = `#fff`
-    styles[presets.Tablet] = {
-      borderBottomColor: `transparent`,
-      position: `absolute`,
-      backgroundColor: colors.ui.whisper,
-    }
+  styles.backgroundColor = `#fff`
+  styles[presets.Tablet] = {
+    borderBottomColor: `transparent`,
+    position: `absolute`,
+    backgroundColor: colors.ui.whisper,
   }
   const socialIconsStyles = {
     color: colors.lilac,
     [presets.Phablet]: {
-      color: isHomepage ? colors.ui.light : false,
+      color: false,
     },
   }
-  const gutters = isHomepage
-    ? {
-        paddingLeft: vP,
-        paddingRight: vP,
-        paddingTop: rhythm(1.5),
-        [presets.Hd]: {
-          paddingLeft: vPHd,
-          paddingRight: vPHd,
-        },
-        [presets.VHd]: {
-          paddingLeft: vPVHd,
-          paddingRight: vPVHd,
-        },
-        [presets.VVHd]: {
-          paddingLeft: vPVVHd,
-          paddingRight: vPVVHd,
-        },
-      }
-    : {}
 
   return (
     <div
@@ -102,7 +74,6 @@ export default ({ pathname }) => {
           margin: `0 auto`,
           paddingLeft: rhythm(3 / 4),
           paddingRight: rhythm(3 / 4),
-          ...gutters,
           fontFamily: typography.options.headerFontFamily.join(`,`),
           display: `flex`,
           alignItems: `center`,
@@ -146,11 +117,7 @@ export default ({ pathname }) => {
             },
           }}
         >
-          <NavItem linkTo="/docs/">Docs</NavItem>
-          <NavItem linkTo="/tutorial/">Tutorial</NavItem>
-          <NavItem linkTo="/packages/">Plugins</NavItem>
-          <NavItem linkTo="/features/">Features</NavItem>
-          <NavItem linkTo="/blog/">Blog</NavItem>
+          <NavItem linkTo="/tags/">标签</NavItem>
         </ul>
         <div
           css={{
@@ -159,7 +126,7 @@ export default ({ pathname }) => {
           }}
         >
           <a
-            href="https://github.com/sigoden"
+            href={githubUrl}
             title="GitHub"
             css={{
               ...navItemStyles,

@@ -24,6 +24,9 @@ class BlogPostsIndex extends React.Component {
           css={{
             [presets.Tablet]: {
               background: `url(${logo})`,
+              paddingTop: `${rhythm(
+                options.blockMarginTop * 4
+              )} !important`,
               paddingBottom: `${rhythm(
                 options.blockMarginBottom * 4
               )} !important`,
@@ -33,24 +36,6 @@ class BlogPostsIndex extends React.Component {
             },
           }}
         >
-          <h1
-            css={{
-              marginTop: 0,
-              [presets.Tablet]: {
-                marginTop: 0,
-                position: `absolute`,
-                width: 1,
-                height: 1,
-                padding: 0,
-                overflow: `hidden`,
-                clip: `rect(0,0,0,0)`,
-                whiteSpace: `nowrap`,
-                clipPath: `inset(50%)`,
-              },
-            }}
-          >
-            Blog
-          </h1>
           {allMarkdownRemark.edges.map(({ node }) => (
             <BlogPostPreviewItem
               post={node}
@@ -105,9 +90,11 @@ export const pageQuery = graphql`
         node {
           excerpt
           frontmatter {
+            slug
+            tags
             excerpt
             title
-            date(formatString: "MMMM Do YYYY")
+            date(formatString: "MMMM DD, YYYY")
           }
         }
       }

@@ -40,6 +40,7 @@ const options = {
   headerLineHeight: 1.075,
   headerColor: colors.gray.dark,
   bodyColor: colors.gray.copy,
+  blockMarginTop: 0.75,
   blockMarginBottom: 0.75,
   scaleRatio: 2,
   plugins: [new CodePlugin()],

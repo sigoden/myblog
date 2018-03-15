@@ -46,7 +46,7 @@ class DefaultLayout extends React.Component {
 
     return (
       <div className={isHomepage ? `is-homepage` : ``}>
-        <Navigation pathname={this.props.location.pathname} />
+        <Navigation pathname={this.props.location.pathname} githubUrl={this.props.data.site.siteMetadata.githubUrl}/>
         <div
           className={`main-body`}
           css={{
@@ -78,4 +78,13 @@ class DefaultLayout extends React.Component {
   }
 }
 
+export const query = graphql`
+  query Layout {
+    site {
+      siteMetadata {
+        githubUrl
+      }
+    }
+  }
+`
 module.exports = DefaultLayout

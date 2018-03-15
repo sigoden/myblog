@@ -1,6 +1,6 @@
 {
-  "name": "gatsby-starter-hello-world",
-  "description": "Gatsby hello world starter",
+  "name": "sigoden-blog",
+  "description": "sigoden person blog",
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
@@ -28,8 +28,10 @@
     "gatsby-source-filesystem": "^1.5.27",
     "gatsby-transformer-remark": "^1.7.36",
     "hex2rgba": "0.0.1",
+    "lodash": "^4.17.5",
     "react-helmet": "^5.2.0",
     "react-icons": "^2.2.7",
+    "react-tagcloud": "^1.2.0",
     "typeface-space-mono": "0.0.54",
     "typeface-spectral": "0.0.54",
     "typography-breakpoint-constants": "^0.15.10",
