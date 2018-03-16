@@ -85,6 +85,12 @@ module.exports = {
         navigateFallbackWhitelist: [],
       },
     },
+    {
+      resolve: `gatsby-plugin-baidu-tongji`,
+      options: {
+        siteid: `1d8f24498a5d96f9c85895f250034e9c`
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,
     {
