@@ -1,5 +1,6 @@
 const path = require(`path`)
 const _ = require('lodash')
+const parseFilepath = require(`parse-filepath`)
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
@@ -15,10 +16,12 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       ) {
         edges {
           node {
+            fields {
+              slug
+            }
             frontmatter {
               title
               tags
-              slug
             }
           }
         }
@@ -36,10 +39,10 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       const next = index === 0 ? false : posts[index - 1].node
       const prev = index === posts.length - 1 ? false : posts[index + 1].node
       createPage({
-        path: node.frontmatter.slug,
+        path: node.fields.slug,
         component: blogPostTemplate,
         context: {
-          slug: node.frontmatter.slug,
+          slug: node.fields.slug,
           prev,
           next,
         },
@@ -66,6 +69,39 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     })
 
   })
+}
+
+
+exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
+  const { createNodeField } = boundActionCreators
+  if (
+    node.internal.type === `MarkdownRemark` &&
+    getNode(node.parent).internal.type === `File`
+  ) {
+
+    let slug
+    const fileNode = getNode(node.parent)
+    const parsedFilePath = parseFilepath(fileNode.relativePath)
+    // Add slugs for docs pages
+    if (fileNode.sourceInstanceName === `blogs`) {
+      if (node.frontmatter.slug) {
+        let _slug = node.frontmatter.slug
+        _slug = _slug.startsWith('/') ? _slug.slice(1) : _slug
+        _slug = _slug.endsWith('/') ? _slug.slice(0, -1) : _slug
+        slug = `/${_slug}/`
+      } else {
+        if (parsedFilePath.name === `index`) {
+          slug = `/${parsedFilePath.dir}/`
+        } else if (parsedFilePath.dir === ``) {
+          slug = `/${parsedFilePath.name}/`
+        } else {
+          slug = `/${parsedFilePath.dir}/${parsedFilePath.name}/`
+        }
+      }
+    }
+
+    createNodeField({ node, name: `slug`, value: slug })
+  }
 }
 
 

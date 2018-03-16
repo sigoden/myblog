@@ -12,7 +12,7 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `src`,
+        name: `blogs`,
         path: `${__dirname}/blogs`,
       },
     },
@@ -126,8 +126,8 @@ module.exports = {
                 return {
                   title: node.frontmatter.title,
                   description: node.frontmatter.excerpt || node.excerpt,
-                  url: site.siteMetadata.siteUrl + node.frontmatter.slug,
-                  guid: site.siteMetadata.siteUrl + node.frontmatter.slug,
+                  url: site.siteMetadata.siteUrl + node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + node.fields.slug,
                   custom_elements: [{ "content:encoded": node.html }],
                   author: "sigoden",
                 }

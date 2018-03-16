@@ -224,7 +224,7 @@ class BlogPostTemplate extends React.Component {
                   }}
                 >
                   {prev && (
-                    <Link to={prev.frontmatter.slug} css={prevNextLinkStyles}>
+                    <Link to={prev.fields.slug} css={prevNextLinkStyles}>
                       <span
                         css={{
                           [presets.Tablet]: {
@@ -246,7 +246,7 @@ class BlogPostTemplate extends React.Component {
                   }}
                 >
                   {next && (
-                    <Link to={next.frontmatter.slug} css={prevNextLinkStyles}>
+                    <Link to={next.fields.slug} css={prevNextLinkStyles}>
                       <span
                         css={{
                           [presets.Tablet]: {
@@ -280,7 +280,7 @@ export const pageQuery = graphql`
         siteAuthor
       }
     }
-    markdownRemark(frontmatter: { slug: { eq: $slug } }) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       excerpt
       timeToRead

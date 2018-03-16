@@ -71,7 +71,7 @@ class BlogPostPreviewList extends React.Component {
         {this.state.posts.map(({ node }) => (
           <BlogPostPreviewItem
             post={node}
-            key={node.frontmatter.slug}
+            key={node.fields.slug}
             css={{
               marginBottom: rhythm(options.blockMarginBottom),
               [presets.Tablet]: {

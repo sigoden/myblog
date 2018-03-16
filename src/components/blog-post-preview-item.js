@@ -17,7 +17,7 @@ class BlogPostPreviewItem extends React.Component {
           if (e.target.tagName === 'A') {
             return
           }
-          navigateTo(`/${_.kebabCase(post.frontmatter.slug)}`)
+          navigateTo(post.fields.slug)
         }}
       >
         <div>

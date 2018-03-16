@@ -31,8 +31,10 @@ export const pageQuery = graphql`
       edges {
         node {
           excerpt
-          frontmatter {
+          fields {
             slug
+          }
+          frontmatter {
             tags
             excerpt
             title
