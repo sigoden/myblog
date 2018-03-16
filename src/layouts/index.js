@@ -15,35 +15,6 @@ class DefaultLayout extends React.Component {
   render() {
     const isHomepage = this.props.location.pathname == `/`
 
-    const leftPadding = rhythmSize => {
-      return 0
-    }
-
-    const sidebarStyles = {
-      borderRight: `1px solid ${colors.ui.light}`,
-      backgroundColor: colors.ui.whisper,
-      width: rhythm(10),
-      display: `none`,
-      position: `fixed`,
-      top: `calc(${presets.headerHeight} - 1px)`,
-      overflowY: `auto`,
-      height: `calc(100vh - ${presets.headerHeight} + 1px)`,
-      WebkitOverflowScrolling: `touch`,
-      "::-webkit-scrollbar": {
-        width: `6px`,
-        height: `6px`,
-      },
-      "::-webkit-scrollbar-thumb": {
-        background: colors.ui.bright,
-      },
-      "::-webkit-scrollbar-track": {
-        background: colors.ui.light,
-      },
-    }
-
-    let childrenMobileDisplay = { display: `block`}
-    let childrenTabletDisplay = { display: `block` }
-
     return (
       <div className={isHomepage ? `is-homepage` : ``}>
         <Navigation pathname={this.props.location.pathname} githubUrl={this.props.data.site.siteMetadata.githubUrl}/>
@@ -59,14 +30,8 @@ class DefaultLayout extends React.Component {
         >
           <div
             css={{
-              ...childrenMobileDisplay,
-              [presets.Tablet]: {
-                paddingLeft: leftPadding(10),
-                ...childrenTabletDisplay,
-              },
-              [presets.Desktop]: {
-                paddingLeft: leftPadding(12),
-              },
+              display: `block`,
+              paddingLeft: 0,
             }}
           >
             {this.props.children()}

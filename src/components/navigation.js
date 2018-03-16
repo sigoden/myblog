@@ -39,9 +39,10 @@ export default ({ pathname, githubUrl }) => {
   const isHomepage = pathname == `/`
   let styles = {}
   styles.backgroundColor = `#fff`
+
   styles[presets.Tablet] = {
     borderBottomColor: `transparent`,
-    position: `absolute`,
+    position: `fixed`,
     backgroundColor: colors.ui.whisper,
   }
   const socialIconsStyles = {
