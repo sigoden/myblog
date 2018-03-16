@@ -1,7 +1,7 @@
 ---
 title: "使用 verdaccio 搭建 npm 私有仓储"
 date: "2017-07-29"
-slug: "verdaccio--private-npm-registry"
+slug: "verdaccio-private-npm-registry"
 tags: ["howto", "registry", "npm"]
 excerpt: "私有 npm 仓储可以保护企业的内部库，可以通过缓存加快企业内部包的安装。如何搭建一套私有 npm 仓储呢？"
 
