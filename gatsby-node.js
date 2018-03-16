@@ -109,4 +109,8 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
   }
 }
 
-
+exports.modifyWebpackConfig = ({ config, stage }) => {
+  if (process.env.NODE_ENV === 'production') {
+    config.merge({devtool: false})
+  }
+}
