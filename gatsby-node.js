@@ -21,6 +21,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             }
             frontmatter {
               title
+              draft
               tags
             }
           }
@@ -33,7 +34,11 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       return Promise.reject(result.errors)
     }
 
-    const posts = result.data.allMarkdownRemark.edges
+    let posts = result.data.allMarkdownRemark.edges
+
+    if (process.env.NODE_ENV === `production`) {
+      posts = posts.filter(edge => !edge.node.frontmatter.draft)
+    }
 
     posts.forEach(({ node }, index) => {
       const next = index === 0 ? false : posts[index - 1].node

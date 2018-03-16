@@ -96,9 +96,13 @@ module.exports = {
               {
                 allMarkdownRemark(
                   sort: { order: DESC, fields: [frontmatter___date] }
+                  filter: { frontmatter: { draft: { ne: true }}}
                 ) {
                   edges {
                     node {
+                      fields {
+                        slug
+                      }
                       excerpt
                       html
                       frontmatter {
@@ -118,7 +122,7 @@ module.exports = {
                 description: siteMetadata.description,
                 feed_url: siteMetadata.siteUrl + `/rss.xml`,
                 site_url: siteMetadata.siteUrl,
-                generator: `sigoden`,
+                generator: siteMetadata.siteAuthor,
               }
             },
             serialize: ({ query: { site, allMarkdownRemark } }) =>
@@ -129,7 +133,7 @@ module.exports = {
                   url: site.siteMetadata.siteUrl + node.fields.slug,
                   guid: site.siteMetadata.siteUrl + node.fields.slug,
                   custom_elements: [{ "content:encoded": node.html }],
-                  author: "sigoden",
+                  author: site.siteMetadata.siteAuthor,
                 }
               }),
           },
