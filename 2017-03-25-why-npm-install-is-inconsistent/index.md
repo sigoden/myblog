@@ -14,10 +14,10 @@ NPM（node package manager），通常称为 node 包管理器。顾名思义，
 ## NPM 模块复制
 
 从 npm3 开始，npm 对包安装进行了优化，如果模块 A 和模块 C 都依赖了模块 B, 模块 B 将只安装一次。
-![npm-copy](https://cdn.sigoden.com/npm-module-copy.png)
+![npm-copy](npm-module-copy.png)
 
 在早期版本，依赖的模块是直接装在模块自己的 node_modules 下的
-![npm-old](https://cdn.sigoden.com/npm-module-old.png)
+![npm-old](npm-module-old.png)
 
 这也是为什么用户在切换到 npm3 后 node_modules 下无缘无故多出那么多包的原因
 
@@ -131,7 +131,7 @@ cat node_modules/c/node_modules/b/package.json | grep version #2.0.0
 
 ```
 可以看到在安装包 a 时，npm 同时将其依赖包`b@1.0.0`安装在最外层`node_modules`下，而安装包 c 时，npm 检查到包 b 已存在但是不同版本，将包 b 安装到包 c 自己的 node_modules 下
-![npm-a-and-c](https://cdn.sigoden.com/npm-a-and-c.png)
+![npm-a-and-c](npm-a-and-c.png)
 
 #### 先安装包 c, 再安装包 a
 
@@ -168,7 +168,7 @@ cat node_modules/a/node_modules/b/package.json | grep version #1.0.0
 
 ```
 可以看到在安装包 c 时，npm 同时将其依赖包`b@2.0.0`安装在最外层`node_modules`下，而安装包 a 时，npm 检查到包 b 已存在但是不同版本，将包 b 安装到包 a 自己的 node_modules 下
-![npm-c-and-a](https://cdn.sigoden.com/npm-c-and-a.png)
+![npm-c-and-a](npm-c-and-a.png)
 
 ## 结论
 

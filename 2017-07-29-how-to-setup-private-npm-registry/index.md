@@ -29,7 +29,7 @@ $ verdaccio
 
 浏览器打开`http://localhost:4873/` ，页面如下
 
-![verdaccio](https://cdn.sigoden.com/verdaccio-home-default.png)
+![verdaccio](verdaccio-home-default.png)
 
 恭喜！仓储搭建并运行成功。
 

@@ -9,7 +9,7 @@ excerpt: "socket.io 提供了基于事件的实时双向通讯，本文将对其
 
 ## 历史
 Web 端与服务器间的实时数据传输的是一个很重要的需求，但最早只能通过 AJAX 轮询询实现。在 WebSocket 标准没有推出之前，AJAX 轮询是唯一可行的方式（通过 Flash 浏览器也可以，但这里不做讨论）。AJAX 轮询原理是设置定时器，定时通过 AJAX 同步服务器数据。这种方式存在延时且对服务端造成很大负载。直到 2011 年，IETF 才标准化 WebSocket——一种基于 TCP 套接字进行收发数据的协议。现如今主流浏览器均已支持 WebSocket。
-![浏览器 WebSocket 支持状况](https://cdn.sigoden.com/browser-websocket-support.png)
+![浏览器 WebSocket 支持状况](browser-websocket-support.png)
 
 socket.io 将数据传输部分独立出来形成了 [engine.io](https://github.com/socketio/engine.io.git), engine.io 对 WebSocket 和 AJAX 轮询进行封装，形成一套 API, 屏蔽了细节差异和兼容性问题，实现了跨浏览器 / 跨设备进行双向数据。
 

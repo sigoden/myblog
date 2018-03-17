@@ -30,7 +30,7 @@ docker pull mongo:3.2 ＃拉取 mongo 版本为 3.2
 
 我们将从 mongo 镜像运行 3 个容器 mongo1,mongo2,mongo3。这三个容器需要网络互通，它们将作为实例组合成一个 mongo 集群。其中 mongo1 作为 primary 实例，暴露端口 3001。mongo2 和 mongo3 均作为 sencodary 实例，分别对外暴露端口 3002,3003。
 
-![mongo-replset-structure](http://omscewgkv.bkt.clouddn.com/mongo%E9%95%9C%E5%83%8F.svg)
+![mongo-replset-structure](mongo-replset-structure.png)
 
 ## 设置网络
 
