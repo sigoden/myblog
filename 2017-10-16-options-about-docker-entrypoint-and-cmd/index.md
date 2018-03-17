@@ -38,7 +38,7 @@ ENTRYPOINT 和 CMD 分别有好多种情形，彼此间的组合情况更多，�
 - 1 -> 表示 Dockerfile 中指令采用 exec 形式，且仅有一个参数。
 - 2 -> 表示 Dockerfile 中指令采用 shell 形式，且仅由一个参数。
 - 3 -> 表示 Dockerfile 中指令采用 exec 形式, 有多个参数。
-- 4 -> 表示 Dockerfile 中指令采用 shll 形式, 有多个参数。
+- 4 -> 表示 Dockerfile 中指令采用 shell 形式, 有多个参数。
 
 举例说明，e1c1 表示 Dockerfile 中同时存在 ENTRYPOINT 和 CMD，且是 exec 形式，仅用一个参数。
 其 Dockerfile 如下：
