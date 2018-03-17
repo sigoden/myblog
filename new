@@ -1,0 +1,40 @@
+#!/bin/bash -x
+
+usage() {
+cat << EOF
+Usage: new <file>
+  Create a new blog with folder named <file> contained index.md,
+  the <file> should start with date formated like \`2018-03-21\`.
+EOF
+}
+
+if [ "$#" -ne 1 ]; then
+  usage 
+  exit 1
+fi
+
+name=$1
+root="$(realpath $(dirname $0))"
+blog_folder="$root/$name"
+blog_date=${name:0:10}
+
+if [ -d "$blog_folder" ]; then
+  echo "Alread created"
+  exit 0
+fi
+
+mkdir $blog_folder
+
+cat << EOF > $blog_folder/index.md
+---
+title: "$name"
+slug: "$name"
+date: "$blog_date"
+tags: []
+excerpt: ""
+draft: true
+
+---
+
+
+EOF
