@@ -1,10 +1,10 @@
 ---
-title: "Linux shell 参数替换完全指南"
+title: "BashScript 参数替换完全指南"
 slug: "shell-can-shu-ti-huan"
 date: 2017-03-29
-tags: ["guide", "shell", "linux"]
+tags: ["guide", "linux", "bash"]
 notoc: true
-excerpt: "如何设置默认变量，如何进行字符截取，如何对变量应用正则进行检测和替换，这些都可以通过 shell 参数替换实现。"
+excerpt: "如何设置默认变量，如何进行字符截取，如何对变量应用正则进行检测和替换，这些都可以通过 BashScript 参数替换实现。"
 
 ---
 
