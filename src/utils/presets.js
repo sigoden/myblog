@@ -1,6 +1,6 @@
 import colors from "./colors"
 
-module.exports = {
+const presets = {
   colors: colors,
   mobile: `(min-width: 400px)`,
   Mobile: `@media (min-width: 400px)`,
@@ -35,3 +35,6 @@ module.exports = {
   logoOffset: 1.8,
   headerHeight: `3.5rem`,
 }
+
+export default presets;
+export { colors };

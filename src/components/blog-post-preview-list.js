@@ -4,7 +4,7 @@ import Container from "../components/container"
 import BlogPostPreviewItem from "../components/blog-post-preview-item"
 
 import presets, { colors } from "../utils/presets"
-import { rhythm, scale, options } from "../utils/typography"
+import { rhythm, options } from "../utils/typography"
 import logo from "../logo.svg"
 
 class BlogPostPreviewList extends React.Component {

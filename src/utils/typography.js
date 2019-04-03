@@ -74,7 +74,7 @@ const options = {
         marginLeft: 0,
         borderLeft: `${rhythm(options.blockMarginBottom / 4)} solid ${
           colors.ui.light
-        }`,
+          }`,
       },
       hr: {
         backgroundColor: colors.ui.light,
@@ -127,7 +127,7 @@ const options = {
         paddingLeft: `${rhythm(options.blockMarginBottom / 5 * 4)}`,
         borderLeft: `${rhythm(options.blockMarginBottom / 5 * 1)} solid ${
           colors.a[3]
-        }`,
+          }`,
         display: `block`,
       },
       ".gatsby-highlight::-webkit-scrollbar": {
@@ -164,7 +164,7 @@ const options = {
         textDecoration: `none`,
         transition: `all ${presets.animation.speedFast} ${
           presets.animation.curveDefault
-        }`,
+          }`,
         borderBottom: `1px solid ${colors.ui.bright}`,
         boxShadow: `inset 0 -2px 0px 0px ${colors.ui.bright}`,
         fontFamily: options.headerFontFamily.join(`,`),
@@ -301,3 +301,7 @@ const options = {
 const typography = new Typography(options)
 
 export default typography
+
+const { rhythm, scale } = typography
+
+export { rhythm, scale, options }

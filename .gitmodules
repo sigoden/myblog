@@ -1,0 +1,4 @@
+[submodule "blogs"]
+	path = blogs
+	url = git@github.com:sigoden/myblog.git
+	branch = master

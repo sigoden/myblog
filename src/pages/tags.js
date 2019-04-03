@@ -1,10 +1,11 @@
 import React from "react"
+import { graphql } from "gatsby"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
-import Link, { navigateTo } from "gatsby-link"
+import { navigateTo } from "gatsby-link"
 import { TagCloud } from "react-tagcloud"
 import kebabCase from "lodash/kebabCase"
-
+import DefaultLayout from "../components/default-layout"
 import Container from "../components/container"
 
 const Tag = (tag, size, color) => (
@@ -24,20 +25,24 @@ const Tag = (tag, size, color) => (
 )
 
 const TagsPage = ({
-  data: { allMarkdownRemark: { group }, site: { siteMetadata: { title } } },
-}) => (
-  <div>
-    <Helmet title={title} />
-    <Container className="tag" css={{ paddingBottom: `0 !important` }}>
-      <TagCloud tags={group.map(tag => ({value: tag.fieldValue, count: tag.totalCount}))}
-        minSize={30}
-        maxSize={80}
-        renderer={Tag}
-        onClick={tag => navigateTo(`/tags/${kebabCase(tag.value)}/`)}
-      />
-    </Container>
-  </div>
-)
+  location,
+  data,
+}) => {
+  const { allMarkdownRemark: { group }, site: { siteMetadata: { title } } } = data;
+  return (
+    <DefaultLayout location={location} githubUrl={data.site.siteMetadata.githubUrl}>
+      <Helmet title={title} />
+      <Container className="tag" css={{ paddingBottom: `0 !important` }}>
+        <TagCloud tags={group.map(tag => ({ value: tag.fieldValue, count: tag.totalCount }))}
+          minSize={30}
+          maxSize={80}
+          renderer={Tag}
+          onClick={tag => navigateTo(`/tags/${kebabCase(tag.value)}/`)}
+        />
+      </Container>
+    </DefaultLayout>
+  )
+}
 
 TagsPage.propTypes = {
   data: PropTypes.shape({
@@ -60,10 +65,11 @@ TagsPage.propTypes = {
 export default TagsPage
 
 export const pageQuery = graphql`
-  query TagsQuery {
+  query PageQuery {
     site {
       siteMetadata {
         title
+        githubUrl
       }
     }
     allMarkdownRemark(

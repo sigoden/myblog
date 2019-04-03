@@ -1,8 +1,9 @@
 import React from "react"
+import { graphql } from "gatsby"
 import Helmet from "react-helmet"
 import Link from "gatsby-link"
-import ArrowForwardIcon from "react-icons/lib/md/arrow-forward"
-import ArrowBackIcon from "react-icons/lib/md/arrow-back"
+import { MdArrowBack, MdArrowForward } from "react-icons/md"
+import DefaultLayout from "../components/default-layout"
 
 import presets, { colors } from "../utils/presets"
 import typography, { rhythm, scale, options } from "../utils/typography"
@@ -12,8 +13,8 @@ import SidebarToc from "../components/sidebar-toc"
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
-    const prev = this.props.pathContext.prev
-    const next = this.props.pathContext.next
+    const prev = this.props.pageContext.prev
+    const next = this.props.pageContext.next
     const siteMetadata = this.props.data.site.siteMetadata
 
     const prevNextLinkStyles = {
@@ -24,14 +25,6 @@ class BlogPostTemplate extends React.Component {
         fontWeight: `bold`,
         color: colors.gatsby,
       },
-    }
-    const prevNextLabelStyles = {
-      marginTop: 0,
-      marginBottom: 0,
-      color: colors.gray.calm,
-      fontWeight: `normal`,
-      ...scale(0),
-      lineHeight: 1,
     }
 
     const hasSidebar = !post.frontmatter.notoc
@@ -111,7 +104,7 @@ class BlogPostTemplate extends React.Component {
           continue
         }
 
-        if (lastHeading.depth == heading.depth) {
+        if (lastHeading.depth === heading.depth) {
           heading.parent = lastHeading.parent
         } else if (lastHeading.depth < heading.depth) {
           if (!lastHeading.items) {
@@ -125,146 +118,148 @@ class BlogPostTemplate extends React.Component {
         lastHeading = heading
       }
       return [toc]
-    } 
+    }
     return (
-      <div className={hasSidebar ? `post has-sidebar` : `post`}>
-        <div
-          css={{
-            ...sidebarStyles,
-            [presets.Tablet]: {
-              display: hasSidebar ? `block` : `none`,
-            },
-            ...sidebarStylesDesktop,
-          }}
-        >
-          <SidebarToc toc={getToc()} />
-        </div>
-        <div 
-          css={{
-            display: `block`,
-            [presets.Tablet]: {
-              paddingLeft: leftPadding(10),
-            },
-            [presets.Desktop]: {
-              paddingLeft: leftPadding(12),
-            },
-          }}
-          >
-          <Container className="post-content" css={{ paddingBottom: `0 !important` }}>
-            {/* Add long list of social meta tags */}
-            <Helmet>
-              <title>{post.frontmatter.title}</title>
-              <link
-                rel="author"
-                href={`${siteMetadata.siteUrl}/about/`}
-              />
-              <meta
-                name="description"
-                content={
-                  post.frontmatter.excerpt
-                    ? post.frontmatter.excerpt
-                    : post.excerpt
-                }
-              />
-
-              <meta name="og:description" content={post.frontmatter.excerpt} />
-              <meta name="og:type" content="article" />
-              <meta name="article:author" content={siteMetadata.siteAuthor} />
-              <meta name="author" content={siteMetadata.siteAuthor} />
-              <meta
-                name="article:published_time"
-                content={post.frontmatter.rawDate}
-              />
-            </Helmet>
-            <h1
-              css={{
-                marginTop: 0,
-                [presets.Desktop]: {
-                  marginBottom: rhythm(5 / 4),
-                },
-              }}
-            >
-              {this.props.data.markdownRemark.frontmatter.title}
-            </h1>
-            <BioLine>
-              {post.timeToRead} min read · {post.frontmatter.date}
-            </BioLine>
-            <div
-              className="post-body"
-              dangerouslySetInnerHTML={{
-                __html: this.props.data.markdownRemark.html,
-              }}
-            />
-          </Container>
+      <DefaultLayout location={this.props.location} githubUrl={this.props.data.site.siteMetadata.githubUrl}>
+        <div className={hasSidebar ? `post has-sidebar` : `post`}>
           <div
             css={{
-              borderTop: `1px solid ${colors.ui.light}`,
-              marginTop: rhythm(2),
+              ...sidebarStyles,
               [presets.Tablet]: {
-                marginTop: rhythm(2),
-                paddingBottom: rhythm(1),
-                paddingTop: rhythm(1),
+                display: hasSidebar ? `block` : `none`,
+              },
+              ...sidebarStylesDesktop,
+            }}
+          >
+            <SidebarToc toc={getToc()} />
+          </div>
+          <div
+            css={{
+              display: `block`,
+              [presets.Tablet]: {
+                paddingLeft: leftPadding(10),
               },
               [presets.Desktop]: {
-                marginTop: rhythm(3),
-                paddingBottom: rhythm(2),
-                paddingTop: rhythm(2),
+                paddingLeft: leftPadding(12),
               },
             }}
           >
-            <Container>
-              <div
-                css={{ [presets.Phablet]: { display: `flex`, width: `100%` } }}
+            <Container className="post-content" css={{ paddingBottom: `0 !important` }}>
+              {/* Add long list of social meta tags */}
+              <Helmet>
+                <title>{post.frontmatter.title}</title>
+                <link
+                  rel="author"
+                  href={`${siteMetadata.siteUrl}/about/`}
+                />
+                <meta
+                  name="description"
+                  content={
+                    post.frontmatter.excerpt
+                      ? post.frontmatter.excerpt
+                      : post.excerpt
+                  }
+                />
+
+                <meta name="og:description" content={post.frontmatter.excerpt} />
+                <meta name="og:type" content="article" />
+                <meta name="article:author" content={siteMetadata.siteAuthor} />
+                <meta name="author" content={siteMetadata.siteAuthor} />
+                <meta
+                  name="article:published_time"
+                  content={post.frontmatter.rawDate}
+                />
+              </Helmet>
+              <h1
+                css={{
+                  marginTop: 0,
+                  [presets.Desktop]: {
+                    marginBottom: rhythm(5 / 4),
+                  },
+                }}
               >
-                <div
-                  css={{
-                    [presets.Phablet]: {
-                      width: `50%`,
-                    },
-                  }}
-                >
-                  {prev && (
-                    <Link to={prev.fields.slug} css={prevNextLinkStyles}>
-                      <span
-                        css={{
-                          [presets.Tablet]: {
-                            marginLeft: `-1rem`,
-                          },
-                        }}
-                      >
-                        <ArrowBackIcon style={{ verticalAlign: `sub` }} />
-                        {prev.frontmatter.title}
-                      </span>
-                    </Link>
-                  )}
-                </div>
-                <div
-                  css={{
-                    textAlign: `right`,
-                    marginTop: rhythm(1),
-                    [presets.Phablet]: { marginTop: 0, width: `50%` },
-                  }}
-                >
-                  {next && (
-                    <Link to={next.fields.slug} css={prevNextLinkStyles}>
-                      <span
-                        css={{
-                          [presets.Tablet]: {
-                            marginRight: `-1rem`,
-                          },
-                        }}
-                      >
-                        {next.frontmatter.title}
-                        <ArrowForwardIcon style={{ verticalAlign: `sub` }} />
-                      </span>
-                    </Link>
-                  )}
-                </div>
-              </div>
+                {this.props.data.markdownRemark.frontmatter.title}
+              </h1>
+              <BioLine>
+                {post.timeToRead} min read · {post.frontmatter.date}
+              </BioLine>
+              <div
+                className="post-body"
+                dangerouslySetInnerHTML={{
+                  __html: this.props.data.markdownRemark.html,
+                }}
+              />
             </Container>
+            <div
+              css={{
+                borderTop: `1px solid ${colors.ui.light}`,
+                marginTop: rhythm(2),
+                [presets.Tablet]: {
+                  marginTop: rhythm(2),
+                  paddingBottom: rhythm(1),
+                  paddingTop: rhythm(1),
+                },
+                [presets.Desktop]: {
+                  marginTop: rhythm(3),
+                  paddingBottom: rhythm(2),
+                  paddingTop: rhythm(2),
+                },
+              }}
+            >
+              <Container>
+                <div
+                  css={{ [presets.Phablet]: { display: `flex`, width: `100%` } }}
+                >
+                  <div
+                    css={{
+                      [presets.Phablet]: {
+                        width: `50%`,
+                      },
+                    }}
+                  >
+                    {prev && (
+                      <Link to={prev.fields.slug} css={prevNextLinkStyles}>
+                        <span
+                          css={{
+                            [presets.Tablet]: {
+                              marginLeft: `-1rem`,
+                            },
+                          }}
+                        >
+                          <MdArrowBack style={{ verticalAlign: `sub` }} />
+                          {prev.frontmatter.title}
+                        </span>
+                      </Link>
+                    )}
+                  </div>
+                  <div
+                    css={{
+                      textAlign: `right`,
+                      marginTop: rhythm(1),
+                      [presets.Phablet]: { marginTop: 0, width: `50%` },
+                    }}
+                  >
+                    {next && (
+                      <Link to={next.fields.slug} css={prevNextLinkStyles}>
+                        <span
+                          css={{
+                            [presets.Tablet]: {
+                              marginRight: `-1rem`,
+                            },
+                          }}
+                        >
+                          {next.frontmatter.title}
+                          <MdArrowForward style={{ verticalAlign: `sub` }} />
+                        </span>
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </Container>
+            </div>
           </div>
         </div>
-      </div>
+      </DefaultLayout>
     )
   }
 }
@@ -278,6 +273,7 @@ export const pageQuery = graphql`
         title
         siteUrl
         siteAuthor
+        githubUrl
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
@@ -299,7 +295,7 @@ export const pageQuery = graphql`
   }
 `
 
-function slugger (string, maintainCase) {
+function slugger(string, maintainCase) {
   const re = /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,./:;<=>?@[\]^`{|}~]/g
   const replacement = '-'
   const whitespace = /\s/g

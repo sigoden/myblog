@@ -1,9 +1,8 @@
 import React from "react"
 import Link,  { navigateTo } from "gatsby-link"
-import { kebabCase } from "lodash"
+import _ from "lodash";
 
-import typography, { rhythm, scale } from "../utils/typography"
-import presets, { colors } from "../utils/presets"
+import { rhythm } from "../utils/typography"
 
 class BlogPostPreviewItem extends React.Component {
   render() {

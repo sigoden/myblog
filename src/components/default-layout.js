@@ -1,23 +1,22 @@
 import React from "react"
-
-import Navigation from "../components/navigation"
-import MobileNavigation from "../components/navigation-mobile"
-import { rhythm } from "../utils/typography"
-import presets, { colors } from "../utils/presets"
-import hex2rgba from "hex2rgba"
+import Navigation from "./navigation"
+import MobileNavigation from "./navigation-mobile"
+import presets  from "../utils/presets"
 import "../css/prism-coy.css"
 
 // Other fonts
 import "typeface-spectral"
 import "typeface-space-mono"
 
+// location, githubUrl, 
 class DefaultLayout extends React.Component {
   render() {
-    const isHomepage = this.props.location.pathname == `/`
+    const { location, githubUrl, children } = this.props;
+    const isHomepage = location.pathname === `/`
 
     return (
       <div className={isHomepage ? `is-homepage` : ``}>
-        <Navigation pathname={this.props.location.pathname} githubUrl={this.props.data.site.siteMetadata.githubUrl}/>
+        <Navigation pathname={location.pathname} githubUrl={githubUrl}/>
         <div
           className={`main-body`}
           css={{
@@ -34,7 +33,7 @@ class DefaultLayout extends React.Component {
               paddingLeft: 0,
             }}
           >
-            {this.props.children()}
+            {children}
           </div>
         </div>
         <MobileNavigation />
@@ -43,13 +42,4 @@ class DefaultLayout extends React.Component {
   }
 }
 
-export const query = graphql`
-  query Layout {
-    site {
-      siteMetadata {
-        githubUrl
-      }
-    }
-  }
-`
-module.exports = DefaultLayout
+export default DefaultLayout

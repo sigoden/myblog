@@ -1,6 +1,6 @@
 import React from "react"
 import Link from "gatsby-link"
-import GithubIcon from "react-icons/lib/go/mark-github"
+import { FaGithub } from "react-icons/fa"
 import logo from "../logo.svg"
 import typography, { rhythm, scale } from "../utils/typography"
 import presets, { colors } from "../utils/presets"
@@ -36,7 +36,7 @@ const NavItem = ({ linkTo, children }) => (
 )
 
 export default ({ pathname, githubUrl }) => {
-  const isHomepage = pathname == `/`
+  const isHomepage = pathname === `/`
   let styles = {}
   styles.backgroundColor = `#fff`
 
@@ -134,7 +134,7 @@ export default ({ pathname, githubUrl }) => {
               ...socialIconsStyles,
             }}
           >
-            <GithubIcon style={{ verticalAlign: `text-top` }} />
+            <FaGithub style={{ verticalAlign: `text-top` }} />
           </a>
 
           <div

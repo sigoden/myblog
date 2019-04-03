@@ -2,8 +2,8 @@ const path = require(`path`)
 const _ = require('lodash')
 const parseFilepath = require(`parse-filepath`)
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
 
   const blogPostTemplate = path.resolve('./src/templates/blog-post.js')
   const blogTagTemplate = path.resolve('./src/templates/blog-tag.js')
@@ -41,8 +41,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     }
 
     posts.forEach(({ node }, index) => {
-      const next = index === 0 ? false : posts[index - 1].node
-      const prev = index === posts.length - 1 ? false : posts[index + 1].node
+      const lastIndex = posts.length - 1;
+      const next = index === lastIndex ? posts[0].node : posts[index + 1].node
+      const prev = index === 0 ? posts[lastIndex].node : posts[index - 1].node
       createPage({
         path: node.fields.slug,
         component: blogPostTemplate,
@@ -77,8 +78,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 }
 
 
-exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
-  const { createNodeField } = boundActionCreators
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions
   if (
     node.internal.type === `MarkdownRemark` &&
     getNode(node.parent).internal.type === `File`
@@ -106,11 +107,5 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
     }
 
     createNodeField({ node, name: `slug`, value: slug })
-  }
-}
-
-exports.modifyWebpackConfig = ({ config, stage }) => {
-  if (process.env.NODE_ENV === 'production') {
-    config.merge({devtool: false})
   }
 }

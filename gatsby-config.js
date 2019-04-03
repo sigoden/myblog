@@ -78,11 +78,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-offline`,
-      options: {
-        navigateFallback: null,
-        navigateFallbackWhitelist: [],
-      },
+      resolve: `gatsby-plugin-offline`
     },
     {
       resolve: `gatsby-plugin-baidu-tongji`,
