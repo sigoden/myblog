@@ -27,6 +27,9 @@ mv public /tmp
 
 cd /tmp/public
 
+if [ -n "$CNAME" ]; then
+    echo "$CNAME" > CNAME
+fi
 git init
 git remote add deploy $TARGET_REPO_URL
 git checkout --orphan $GHPAGES_BRANCH 

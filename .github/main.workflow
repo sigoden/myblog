@@ -16,6 +16,7 @@ action "Deply: push master" {
   uses = "./.github/action-deploy"
   env = {
     RENDER_BRANCH = "render"
+    CNAME = "blog.sigoden.com"
   }
   secrets = ["GIT_DEPLOY_KEY"]
   needs = ["Filters: push master"]
@@ -25,6 +26,7 @@ action "Deply: push render" {
   uses = "./.github/action-deploy"
   env = {
     RENDER_BRANCH = "render"
+    CNAME = "blog.sigoden.com"
   }
   secrets = ["GIT_DEPLOY_KEY"]
   needs = ["Filters: push render"]
