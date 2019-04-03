@@ -5,9 +5,9 @@ workflow "Build & Deploy: masater" {
   on = "push"
 }
 
-workflow "Build & Deploy: render" {
+workflow "Build & Deploy: use-githubtoken" {
   resolves = [
-    "Deply: push render"
+    "Deply: push use-githubtoken"
   ]
   on = "push"
 }
