@@ -2,17 +2,11 @@
 
 STAGE_DIR=${GITHUB_WORKSPACE}/stage
 GHPAGES_BRANCH=gh-pages
-TARGET_REPO_URL="git@github.com:${GITHUB_REPOSITORY}.git"
+TARGET_REPO_URL="https://${GITHUB_TOKEN}@github.com:${GITHUB_REPOSITORY}.git"
 
 if [ -z "$RENDER_BRANCH" ]; then
     echo "Set the RENDER_BRANCH env variable."
     exit 1
-fi
-if [ -n "${GIT_DEPLOY_KEY}" ]; then
-    mkdir /root/.ssh
-    ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts && \
-    echo "${GIT_DEPLOY_KEY}" > /root/.ssh/id_rsa && \
-    chmod 400 /root/.ssh/id_rsa
 fi
 
 git submodule init
