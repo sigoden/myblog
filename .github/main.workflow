@@ -18,18 +18,18 @@ action "Deply: push master" {
     RENDER_BRANCH = "render"
     CNAME = "blog.sigoden.com"
   }
-  secrets = ["GIT_DEPLOY_KEY"]
+  secrets = ["GITHUB_TOKEN"]
   needs = ["Filters: push master"]
 }
 
-action "Deply: push render" {
+action "Deply: push use-githubtoken" {
   uses = "./.github/action-deploy"
   env = {
-    RENDER_BRANCH = "render"
+    RENDER_BRANCH = "use-githubtoken"
     CNAME = "blog.sigoden.com"
   }
-  secrets = ["GIT_DEPLOY_KEY"]
-  needs = ["Filters: push render"]
+  secrets = ["GITHUB_TOKEN"]
+  needs = ["Filters: push use-githubtoken"]
 }
 
 action "Filters: push render" {
