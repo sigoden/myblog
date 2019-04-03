@@ -54,7 +54,6 @@ module.exports = {
     },
     `gatsby-plugin-glamor`,
     `gatsby-plugin-catch-links`,
-    `gatsby-plugin-react-next`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
