@@ -1,11 +1,11 @@
 workflow "Deploy" {
   resolves = [
-    "Deploy"
+    "Deploy branch render"
   ]
   on = "push"
 }
 
-action "Deploy" {
+action "Deploy branch render" {
   uses = "./.github/action-deploy"
   env = {
     RENDER_BRANCH = "render"
