@@ -1,13 +1,13 @@
 workflow "Build & Deploy: masater" {
   resolves = [
-    "Deply: push master"
+    "Deply: push master",
   ]
   on = "push"
 }
 
 workflow "Build & Deploy: use-githubtoken" {
   resolves = [
-    "Deply: push use-githubtoken"
+    "Deply: push use-githubtoken",
   ]
   on = "push"
 }
@@ -34,7 +34,7 @@ action "Deply: push use-githubtoken" {
 
 action "Filters: push use-githubtoken" {
   uses = "actions/bin/filter@3c98a2679187369a2116d4f311568596d3725740"
-  args = "branch render"
+  args = "branch use-githubtoken"
 }
 
 action "Filters: push master" {
