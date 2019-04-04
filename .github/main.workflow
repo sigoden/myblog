@@ -32,7 +32,7 @@ action "Deply: push use-githubtoken" {
   needs = ["Filters: push use-githubtoken"]
 }
 
-action "Filters: push render" {
+action "Filters: push use-github-token" {
   uses = "actions/bin/filter@3c98a2679187369a2116d4f311568596d3725740"
   args = "branch render"
 }
