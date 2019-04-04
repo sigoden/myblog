@@ -17,7 +17,7 @@ fi
 
 if [ $GITHUB_REF != "refs/heads/${RENDER_BRANCH}" ]; then
     git fetch origin ${RENDER_BRANCH}
-    git checkout --trace origin/${RENDER_BRANCH}
+    git checkout --track origin/${RENDER_BRANCH}
 fi
 
 git submodule init
