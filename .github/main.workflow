@@ -5,7 +5,7 @@ workflow "Deploy" {
   on = "push"
 }
 
-action "Deply" {
+action "Deploy" {
   uses = "./.github/action-deploy"
   env = {
     RENDER_BRANCH = "render"
