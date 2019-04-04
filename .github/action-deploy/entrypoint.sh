@@ -15,6 +15,11 @@ if [ -n "${GIT_DEPLOY_KEY}" ]; then
     chmod 400 /root/.ssh/id_rsa
 fi
 
+if [ $GITHUB_REF != "refs/heads/${RENDER_BRANCH}" ]; then
+    git fetch origin ${RENDER_BRANCH}
+    git checkout --track origin/${RENDER_BRANCH}
+fi
+
 git submodule init
 git submodule update --remote --recursive
 echo "cloned the repo"
