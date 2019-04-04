@@ -1,15 +1,15 @@
 workflow "Deploy" {
   resolves = [
-    "Deply"
+    "Deploy branch master"
   ]
   on = "push"
 }
 
-
-action "Deply" {
+action "Deploy branch master" {
   uses = "./.github/action-deploy"
   env = {
-    RENDER_BRANCH = "master"
+    RENDER_BRANCH = "render"
+    CNAME = "blog.sigoden.com"
   }
   secrets = ["GIT_DEPLOY_KEY"]
 }
