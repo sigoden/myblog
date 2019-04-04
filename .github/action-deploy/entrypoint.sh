@@ -8,7 +8,7 @@ if [ -z "$RENDER_BRANCH" ]; then
     echo "Set the RENDER_BRANCH env variable."
     exit 1
 fi
-
+git remote set-url origin $TARGET_REPO_URL
 git submodule init
 git submodule update --remote --recursive
 echo "cloned the repo"
